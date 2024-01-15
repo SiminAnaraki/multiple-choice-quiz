@@ -16,13 +16,13 @@ var questions=[
 var answers = [
     [["firstAnswer","string"],["secondAnswr","booleans"], ["corect","alerts"],["fourthAnswer","numbers"] ]
     ,
-    [["firstAnswer","quotes"],["secondAnswr","curly brackets"],["thirdAnswer","parenthesis"],["fourthAnswer","square brachets"]]
+    [["firstAnswer","quotes"],["secondAnswr","curly brackets"],["corect","parenthesis"],["fourthAnswer","square brachets"]]
     ,
-    [["firstAnswer","numbers and strings"],["secondAnswr","other arrays"],["thirdAnswer","booleans"],["fourthAnswer","all of the above"]]
+    [["firstAnswer","numbers and strings"],["secondAnswr","other arrays"],["thirdAnswer","booleans"],["corect","all of the above"]]
     ,
-    [["firstAnswer","commas"],["secondAnswr","curly brackets"],["thirdAnswer","quotes"],["fourthAnswer","parenthesis"]]
+    [["firstAnswer","commas"],["secondAnswr","curly brackets"],["corect","quotes"],["fourthAnswer","parenthesis"]]
     ,
-    [["firstAnswer","JavaScript"],["secondAnswr","terminal/bash"],["thirdAnswer","fpr loops"],["fourthAnswer","console.log"]]
+    [["firstAnswer","JavaScript"],["secondAnswr","terminal/bash"],["corect","fpr loops"],["fourthAnswer","console.log"]]
     ]
 function questionsFarm(i){
     
@@ -49,6 +49,9 @@ function questionsFarm(i){
         if (element.matches("button")){
             var userAns = element.getAttribute("data-test");
             eachResult.textContent = userAns 
+            if(!(userAns=== "corect")){
+                seconds = seconds - 15
+            }
             if(i<questions.length-1){
                 i++
                 choices.textContent=""
