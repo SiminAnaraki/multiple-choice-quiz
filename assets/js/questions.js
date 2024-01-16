@@ -25,10 +25,6 @@ var answers = [
     [["firstAnswer","1. JavaScript"],["secondAnswr","2. terminal/bash"],["corect","3. for loops"],["fourthAnswer","4. console.log"]]
     ]
 function questionsFarm(i){
-    
-      var ul = document.createElement("ul");
-      ul.setAttribute("id","ul")
-        choices.append(ul)
     questionTitle.textContent = questions[i].title
     for (var j = 0; j<answers[i].length; j++){
         var ansBtn = document.createElement("button")
@@ -39,33 +35,30 @@ function questionsFarm(i){
         }
         else {ansBtn.setAttribute("data-test","wrong")}
     }
-
-    choices.addEventListener("click",function(event){
-        event.preventDefault();
+choices.addEventListener("click",function(event){
+    event.preventDefault();
+    var element = event.target;
+    if (element.matches("button")){
         showEachResult.classList.remove("hide")
-        var element = event.target;
-        if (element.matches("button")){
-            var userAns = element.getAttribute("data-test");
-            eachResult.textContent = userAns 
-            if(!(userAns=== "corect")){
-                if(seconds>15){
-                seconds = seconds - 15}
-                else{
-                   
-                  seconds = 0
-                  
-                }
-            }
-            if(i<questions.length-1){
-                i++
-                choices.textContent=""
-                questionsFarm(i)
-            }
-            else {
-                console.log(time.textContent)
-                stop()   
+        var userAns = element.getAttribute("data-test");
+        eachResult.textContent = userAns 
+        if(!(userAns=== "corect")){
+            if(seconds>15){
+            seconds = seconds - 15}
+            else{
+                seconds = 0
             }
         }
+        if(i<questions.length-1){
+            i++
+            choices.textContent=""
+            questionsFarm(i)
+        }
+            else {
+            console.log(time.textContent)
+            stop()   
+            }
+    }
 
 })}
 

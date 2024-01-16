@@ -4,9 +4,9 @@ var startBtn = document.querySelector("#start");
 var time = document.querySelector("#time");
 var initials = document.querySelector("#initials");
 var submit = document.querySelector("#submit");
-
+var highscores = []
 var seconds = 30;
-var timeOver
+var timeOver;
 
 startBtn.addEventListener("click",startQuiz)
     function startQuiz(){
@@ -30,6 +30,10 @@ startBtn.addEventListener("click",startQuiz)
     submit.addEventListener("click",function(event){
         event.preventDefault()
         var userInput = initials.value;
+        var namedScore = `${userInput} - ${finalScore.textContent}`
+        highscores.push(namedScore)
+        var forStore = JSON.stringify(highscores)
+        localStorage.setItem("storedHighscore",forStore)
         window.location.assign("highscores.html")
     })
     function stop (){
