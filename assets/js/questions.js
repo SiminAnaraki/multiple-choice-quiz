@@ -14,15 +14,15 @@ var questions=[
     {title:"String values must be ecclosed within ______ when being assigned to variables."},
     {title:"A very useful tool used during development and debugging for printing content to the debugger is:"}]
 var answers = [
-    [["firstAnswer","string"],["secondAnswr","booleans"], ["corect","alerts"],["fourthAnswer","numbers"] ]
+    [["firstAnswer","1. string"],["secondAnswr","2. booleans"], ["corect","3. alerts"],["fourthAnswer","4. numbers"] ]
     ,
-    [["firstAnswer","quotes"],["secondAnswr","curly brackets"],["corect","parenthesis"],["fourthAnswer","square brachets"]]
+    [["firstAnswer","1. quotes"],["secondAnswr","2. curly brackets"],["corect","3. parenthesis"],["fourthAnswer","4. square brachets"]]
     ,
-    [["firstAnswer","numbers and strings"],["secondAnswr","other arrays"],["thirdAnswer","booleans"],["corect","all of the above"]]
+    [["firstAnswer","1. numbers and strings"],["secondAnswr","2. other arrays"],["thirdAnswer","3. booleans"],["corect","4. all of the above"]]
     ,
-    [["firstAnswer","commas"],["secondAnswr","curly brackets"],["corect","quotes"],["fourthAnswer","parenthesis"]]
+    [["firstAnswer","1. commas"],["secondAnswr","2. curly brackets"],["corect","3. quotes"],["fourthAnswer","4. parenthesis"]]
     ,
-    [["firstAnswer","JavaScript"],["secondAnswr","terminal/bash"],["corect","fpr loops"],["fourthAnswer","console.log"]]
+    [["firstAnswer","1. JavaScript"],["secondAnswr","2. terminal/bash"],["corect","3. for loops"],["fourthAnswer","4. console.log"]]
     ]
 function questionsFarm(i){
     
@@ -32,9 +32,7 @@ function questionsFarm(i){
     questionTitle.textContent = questions[i].title
     for (var j = 0; j<answers[i].length; j++){
         var ansBtn = document.createElement("button")
-        var li = document.createElement("li");
-        li.append(ansBtn)
-        ul.append(li);
+        choices.append(ansBtn)
         ansBtn.textContent = answers[i][j][1]
         if(answers[i][j][0]==="corect"){
             ansBtn.setAttribute("data-test","corect")
@@ -42,7 +40,7 @@ function questionsFarm(i){
         else {ansBtn.setAttribute("data-test","wrong")}
     }
 
-    ul.addEventListener("click",function(event){
+    choices.addEventListener("click",function(event){
         event.preventDefault();
         showEachResult.classList.remove("hide")
         var element = event.target;
@@ -50,7 +48,13 @@ function questionsFarm(i){
             var userAns = element.getAttribute("data-test");
             eachResult.textContent = userAns 
             if(!(userAns=== "corect")){
-                seconds = seconds - 15
+                if(seconds>15){
+                seconds = seconds - 15}
+                else{
+                   
+                  seconds = 0
+                  
+                }
             }
             if(i<questions.length-1){
                 i++
@@ -58,11 +62,10 @@ function questionsFarm(i){
                 questionsFarm(i)
             }
             else {
-                clearInterval(timeOver)
-                finalScore.textContent = time.textContent;
-                questionScreen.classList.add("hide")
-                endScreen.classList.remove("hide")    
+                console.log(time.textContent)
+                stop()   
             }
-    }
+        }
 
 })}
+

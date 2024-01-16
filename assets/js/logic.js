@@ -2,7 +2,10 @@ var startScreen = document.querySelector("#start-screen");
 var questionScreen = document.querySelector("#questions");
 var startBtn = document.querySelector("#start");
 var time = document.querySelector("#time");
-var seconds = 75
+var initials = document.querySelector("#initials");
+var submit = document.querySelector("#submit");
+
+var seconds = 30;
 var timeOver
 
 startBtn.addEventListener("click",startQuiz)
@@ -14,16 +17,28 @@ startBtn.addEventListener("click",startQuiz)
             time.textContent= seconds
             }
             else{ 
-                clearInterval(timeOver)
-                questionScreen.classList.add("hide")
-                endScreen.classList.remove("hide")}
+                time.textContent= seconds
+                stop();
+              }
                 },1000);
                   
 
         startScreen.setAttribute("class","hide")
         questionScreen.classList.remove("hide")
         questionsFarm(i)
-       
     } 
+    submit.addEventListener("click",function(event){
+        event.preventDefault()
+        var userInput = initials.value;
+        window.location.assign("highscores.html")
+    })
+    function stop (){
+        clearInterval(timeOver)
+        questionScreen.classList.add("hide");
+        endScreen.classList.remove("hide");
+        finalScore.textContent = time.textContent;
+    }
+
+
    
    
